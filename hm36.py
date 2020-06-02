@@ -12,24 +12,6 @@ from alphapose.utils.camera import project_point_radial, world_to_camera_frame, 
 # s_hm36_2_coco_jt = [-1, 12, 14, 16, 11, 13, 15, -1, -1, 0, -1, 5, 7, 9, 6, 8, 10, -1]
 s_hm36_2_coco_jt = [9, -1, -1, -1, -1, 11, 14, 12, 15, 13, 16, 4, 1, 5, 2, 6, 3]
 
-HUMAN_36M_ACTIONS = ["Directions",
-           "Discussion",
-           "Eating",
-           "Greeting",
-           "Phoning",
-           "Posing",
-           "Purchases",
-           "Sitting",
-           "SittingDown",
-           "Smoking",
-           "Photo",
-           "Waiting",
-           "Walking",
-           "WalkDog",
-           "WalkTogether"]
-
-cnames = ['54138969','55011271','58860488','60457274']
-
 def from_hm36_to_coco_single(pose, num_joints):
     res_jts = np.zeros((num_joints, 2), dtype=np.float)
     # res_vis = np.zeros((num_joints, 2), dtype=np.float)
@@ -42,12 +24,6 @@ def from_hm36_to_coco_single(pose, num_joints):
             # res_vis[id1] = pose_vis[id2].copy()
 
     return res_jts.copy()
-
-# def from_hm36_to_coco(db):
-#     for n_sample in range(0, len(db)):
-#         res_jts, res_vis = from_coco_to_hm36_single(db[n_sample]['joints_3d'], db[n_sample]['joints_3d_vis'])
-#         db[n_sample]['joints_3d'] = res_jts
-#         db[n_sample]['joints_3d_vis'] = res_vis
 
 @DATASET.register_module
 class hm36(CustomDataset):
